@@ -1,13 +1,13 @@
-const {Joi} = require('express-validation');
-const {
+import {Joi} from 'express-validation';
+import {
     CONFIRM_PASSWORD_FIELD,
     EMAIL_FIELD,
     PASSWORD_FIELD,
     USER_NAME_FIELD,
     EMAIL_VALID_NAMES
-} = require('./constants');
+} from'./constants';
 
-const login = {
+export const loginValidation = {
     body: Joi.object({
         [EMAIL_FIELD]: Joi.string()
             .email({minDomainSegments: 2, tlds: {allow: EMAIL_VALID_NAMES}})
@@ -18,7 +18,7 @@ const login = {
     }),
 };
 
-const register = {
+export const registerValidation = {
     body: Joi.object({
         [USER_NAME_FIELD]: Joi.string()
             .alphanum()
@@ -35,10 +35,3 @@ const register = {
         [CONFIRM_PASSWORD_FIELD]: Joi.ref(PASSWORD_FIELD),
     }),
 };
-
-
-module.exports = {
-    login,
-    register
-};
-

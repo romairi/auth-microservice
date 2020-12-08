@@ -1,9 +1,9 @@
-const jwt = require('jsonwebtoken');
-const serverConfig = require('../config/serverConfig');
-const UserModel = require('./model');
+import jwt from 'jsonwebtoken';
+import {serverConfig} from '../config/serverConfig';
+import UserModel from './model';
 
 
-async function auth(req, res, next) {
+export async function auth(req, res, next) {
     const {token} = req.cookies;
     let authenticated = false;
     let user = null;
@@ -31,5 +31,3 @@ async function auth(req, res, next) {
 
     next();
 }
-
-module.exports = {auth};

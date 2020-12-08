@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -22,9 +22,4 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-UserSchema.statics.createUser = async function (args) {
-    const user = await this.create(args);
-    return await user.save();
-};
-
-module.exports = mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema);

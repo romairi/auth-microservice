@@ -1,12 +1,12 @@
-const express = require('express');
-const {validate} = require('express-validation');
-const {login, register, logout} = require('./controller');
-const paramValidation = require('./validation');
+import express from 'express';
+import {validate} from 'express-validation';
+import {login, register, logout} from './controller';
+import {loginValidation, registerValidation} from './validation';
 
 const router = express.Router();
 
-router.get('/login', validate(paramValidation.login), login);
-router.get('/register', validate(paramValidation.register), register);
+router.post('/login', validate(loginValidation), login);
+router.post('/register', validate(registerValidation), register);
 router.get('/logout', logout);
 
-module.exports = router;
+export default router;

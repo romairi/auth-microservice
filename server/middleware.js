@@ -1,10 +1,11 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const routes = require('../server/routes');
-const {auth} = require('./user/auth');
-const {validationError, logErrors, clientErrorHandler, errorHandler} = require('./services/errorHandling');
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import routes from '../server/routes';
+import {auth} from './user/auth';
+import {validationError, logErrors, clientErrorHandler, errorHandler} from './services/errorHandling';
 
-const middleware = app => {
+
+export const middleware = app => {
     app.use(cookieParser());
     app.use(express.json());
 
@@ -14,6 +15,3 @@ const middleware = app => {
     app.use(clientErrorHandler);
     app.use(errorHandler);
 };
-
-
-module.exports = middleware;

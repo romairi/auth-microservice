@@ -1,29 +1,28 @@
-const HttpStatus = require('http-status-codes');
-const UserModel = require('./model');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const serverConfig = require('../config/serverConfig');
-const {
+import {serverConfig} from "../config/serverConfig";
+import {StatusCodes} from 'http-status-codes';
+import UserModel from './model';
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken';
+import {
     TOKEN_EXPIRATION_TIME,
     COOKIE_EXPIRATION_TIME,
     ERROR_MESSAGE,
     ERROR_EMAIL_EXIST_MESSAGE
-} = require("./constants");
+} from "./constants";
 
 
-async function login(req, res, next) {
+export async function login(req, res, next) {
     const {email, password} = req.body;
-
     try {
         const user = await UserModel.findOne({email});
         if (!user) {
-            res.status(HttpStatus.BAD_REQUEST).json({type: 'error', message: ERROR_MESSAGE});
+            res.status(StatusCodes.BAD_REQUEST).json({type: 'error', message: ERROR_MESSAGE});
             return;
         }
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
-            return res.status(HttpStatus.BAD_REQUEST).json({type: 'error', message: ERROR_MESSAGE});
+            return res.status(StatusCodes.BAD_REQUEST).json({type: 'error', message: ERROR_MESSAGE});
         }
 
         return loadUser(res, user);
@@ -33,13 +32,13 @@ async function login(req, res, next) {
     }
 }
 
-async function register(req, res, next) {
-    const {name, email, password} = req.body;
+export async function register(req, res, next) {
+    const {username, email, password} = req.body;
 
     try {
         const foundUser = await UserModel.findOne({email});
         if (foundUser) {
-            res.status(HttpStatus.BAD_REQUEST).json({type: 'error', message: ERROR_EMAIL_EXIST_MESSAGE});
+            res.status(StatusCodes.BAD_REQUEST).json({type: 'error', message: ERROR_EMAIL_EXIST_MESSAGE});
             return;
         }
         // encryption of user password
@@ -47,7 +46,7 @@ async function register(req, res, next) {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         // creating a new user
-        const newUser = new UserModel({name, password: hashedPassword});
+        const newUser = new UserModel({username, password: hashedPassword, email});
         const user = await newUser.save();
 
         return loadUser(res, user);
@@ -56,14 +55,14 @@ async function register(req, res, next) {
     }
 }
 
-function logout(req, res, next) {
+export function logout(req, res, next) {
     if (req.authenticated) {
         res.clearCookie('token');
     }
     res.send('logout');
 }
 
-function loadUser(res, user) {
+export function loadUser(res, user) {
     const token = jwt.sign({_id: user._id}, serverConfig.jwt.secret, {expiresIn: TOKEN_EXPIRATION_TIME});
     const {password: userPassword, ...userArgs} = user.toObject();
 
@@ -76,5 +75,3 @@ function loadUser(res, user) {
         .json(userArgs);
     return res;
 }
-
-module.exports = {login, register, logout};

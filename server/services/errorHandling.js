@@ -1,7 +1,7 @@
-const {StatusCodes, ReasonPhrases} = require('http-status-codes');
-const {ValidationError} = require("express-validation");
+import {StatusCodes, ReasonPhrases} from 'http-status-codes';
+import {ValidationError} from "express-validation";
 
-function validationError(err, req, res, next) {
+export function validationError(err, req, res, next) {
     if (err instanceof ValidationError) {
         return res.status(err.statusCode).json(err);
     }
@@ -9,12 +9,12 @@ function validationError(err, req, res, next) {
     return next(err);
 }
 
-function logErrors(err, req, res, next) {
+export function logErrors(err, req, res, next) {
     console.error(err.stack);
     next(err);
 }
 
-function clientErrorHandler(err, req, res, next) {
+export function clientErrorHandler(err, req, res, next) {
     if (req.xhr) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({error: ReasonPhrases.INTERNAL_SERVER_ERROR});
     } else {
@@ -22,9 +22,7 @@ function clientErrorHandler(err, req, res, next) {
     }
 }
 
-function errorHandler(err, req, res, next) {
+export function errorHandler(err, req, res, next) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR);
     res.send(ReasonPhrases.INTERNAL_SERVER_ERROR);
 }
-
-module.exports = {validationError, logErrors, clientErrorHandler, errorHandler};

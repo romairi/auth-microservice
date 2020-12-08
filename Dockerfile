@@ -24,4 +24,4 @@ COPY --chown=${USER} --from=build-stage ${WORKDIR_PATH}/build ./build
 #COPY --chown=${USER} . .
 
 EXPOSE ${PORT}
-CMD ["node", "index.js"]
+CMD ["node", "build"]

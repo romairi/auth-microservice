@@ -1,8 +1,8 @@
 import express from 'express';
 
-import serverConfig from "./config/serverConfig";
-import connectDB from './config/dbConfig';
-import middleware from './middleware';
+import {middleware} from './middleware';
+import {serverConfig} from "./config/serverConfig";
+import {connectDB} from "./services/connectDB";
 
 const app = express();
 

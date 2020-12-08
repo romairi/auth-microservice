@@ -1,10 +1,9 @@
-const express = require('express');
-const userRoutes = require('./user/routes');
+import express from 'express';
+import userRoutes from './user/routes';
 
 const router = express.Router();
 
-// API routes
-router.use('/api/auth', userRoutes);
+// AUTH routes
+router.use('/auth', userRoutes);
 
-
-module.exports = router;
+export default router;
