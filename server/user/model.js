@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import extendedModel from './extendedModel';
+
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -19,7 +21,8 @@ const UserSchema = new mongoose.Schema({
     creationTime: {
         type: Date,
         default: Date.now,
-    }
+    },
+    ...extendedModel
 });
 
 export default mongoose.model('User', UserSchema);
