@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`connectDB should failed to connect to mongoDB 1`] = `
+Array [
+  "MOCK_URI",
+  Object {
+    "useCreateIndex": true,
+    "useFindAndModify": false,
+    "useNewUrlParser": true,
+    "useUnifiedTopology": true,
+  },
+]
+`;
+
+exports[`connectDB should failed to connect to mongoDB 2`] = `
+Array [
+  "MONGO ERROR",
+]
+`;
+
+exports[`connectDB should failed to connect to mongoDB 3`] = `
+Array [
+  "ERROR_MESSAGE",
+]
+`;
+
+exports[`connectDB should successfully connect to mongoDB 1`] = `
+Array [
+  "MOCK_URI",
+  Object {
+    "useCreateIndex": true,
+    "useFindAndModify": false,
+    "useNewUrlParser": true,
+    "useUnifiedTopology": true,
+  },
+]
+`;
+
+exports[`connectDB should successfully connect to mongoDB 2`] = `
+Array [
+  "MongoDB Connected...",
+]
+`;
