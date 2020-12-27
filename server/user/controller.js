@@ -6,7 +6,8 @@ import jwt from 'jsonwebtoken';
 import {
     TOKEN_EXPIRATION_TIME,
     ERROR_MESSAGE,
-    ERROR_EMAIL_EXIST_MESSAGE
+    ERROR_EMAIL_EXIST_MESSAGE,
+    AUTHENTICATION_SCHEME
 } from "./constants";
 import Logger from "../services/logger";
 
@@ -14,11 +15,11 @@ const logger = new Logger();
 
 
 /**
- *
+ * Authentication with Bearer scheme and decode JWT
  * @param req - request
  * @param res - response
  * @param next
- * @returns {Promise<void>}
+ * @returns the user object and if one is authenticated in the response
  */
 export async function checkAuth(req, res, next) {
     let authenticated = false;
@@ -26,7 +27,7 @@ export async function checkAuth(req, res, next) {
 
     try {
         const authHeader = req.headers.authorization;
-        const token = authHeader && authHeader.substring("Bearer ".length);
+        const token = authHeader && authHeader.substring(AUTHENTICATION_SCHEME.length);
 
         if (token) {
             const decodedToken = jwt.verify(token, serverConfig.jwt.secret);
@@ -55,11 +56,11 @@ export async function checkAuth(req, res, next) {
 
 /**
  * The function checks if the user exists by the email field in the database
- * If the process succeeded and email and password have matched, the user is consider as logged in
+ * If the process succeeded and email and password have matched, the user is considered as logged in
  * @param req - request
  * @param res - response
  * @param next
- * @returns {Promise<*>} the user object and JWT token if the auth process succeeded, otherwise null
+ * @returns the user object and JWT token if the auth process succeeded, otherwise null
  */
 export async function login(req, res, next) {
     const {
@@ -102,7 +103,7 @@ export async function login(req, res, next) {
  * @param req - request
  * @param res - response
  * @param next
- * @returns {Promise<*>}
+ * @returns set the user object and the JWT token in the response
  */
 export async function register(req, res, next) {
     const {
@@ -142,7 +143,7 @@ export async function register(req, res, next) {
 
 /**
  *
- * @param res = response
+ * @param res - response
  * @param user
  * @returns set the user object and the JWT token in the response
  */
@@ -152,14 +153,9 @@ export function loadUser(res, user) {
     }, serverConfig.jwt.secret, {
         expiresIn: TOKEN_EXPIRATION_TIME
     });
-    const {
-        password: userPassword,
-        ...userArgs
-    } = user.toObject();
 
-    res.json({
-        user: userArgs,
-        token
-    });
+    const {password: userPassword, ...userArgs} = user.toObject();
+
+    res.json({user: userArgs, token});
     return res;
 }

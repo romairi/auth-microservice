@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`errorHandling validationError should return status code error with the object 1`] = `"{\\"name\\":\\"ValidationError\\",\\"message\\":\\"Validation Failed\\",\\"statusCode\\":500,\\"details\\":[\\"err1\\",\\"err2\\",\\"err3\\"]}"`;

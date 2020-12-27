@@ -19,15 +19,13 @@ export function validationError(err, req, res, next) {
 
 /**
  * This is generic function writes request and error information to stderr
- * @param err
- * @param req
- * @param res
- * @param next
+ * @param logger
+ * @returns {Function}
  */
-export function logErrors(err, req, res, next) {
-    console.error(err.stack);
+export const logErrors = logger  => (err, req, res, next) => {
+    logger.error(err.stack);
     next(err);
-}
+};
 
 /**
  * The error is explicitly passed along to the next one.
