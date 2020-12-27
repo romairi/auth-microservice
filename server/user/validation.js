@@ -5,8 +5,14 @@ import {
     PASSWORD_FIELD,
     USER_NAME_FIELD,
     EMAIL_VALID_NAMES
-} from'./constants';
+} from './constants';
+import extendedModel from './extendedModel';
 
+/**
+ * Inside the scheme defined two rules email and password.
+ * The function allows input for user only valid fields otherwise return an error
+ * @type {{body: Joi.ObjectSchema<any>}}
+ */
 export const loginValidation = {
     body: Joi.object({
         [EMAIL_FIELD]: Joi.string()
@@ -18,6 +24,11 @@ export const loginValidation = {
     }),
 };
 
+/**
+ * Inside the scheme defined four rules username, email, password and confirmPassword.
+ * The function allows input for user only valid fields otherwise return an error
+ * @type {{body: Joi.ObjectSchema<any>}}
+ */
 export const registerValidation = {
     body: Joi.object({
         [USER_NAME_FIELD]: Joi.string()
@@ -33,5 +44,9 @@ export const registerValidation = {
             .min(7)
             .required(),
         [CONFIRM_PASSWORD_FIELD]: Joi.ref(PASSWORD_FIELD),
+        ...Object.keys(extendedModel).reduce((acc, cur) => ({
+            ...acc,
+            [cur]: Joi.any()
+        }), {})
     }),
 };

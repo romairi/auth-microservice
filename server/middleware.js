@@ -1,17 +1,19 @@
 import express from 'express';
-import cookieParser from 'cookie-parser';
-import routes from '../server/routes';
-import {auth} from './user/auth';
+import userRoutes from './user/routes';
 import {validationError, logErrors, clientErrorHandler, errorHandler} from './services/errorHandling';
+import Logger from "./services/logger";
 
-
+/**
+ * Application-Level Middleware
+ * @param app
+ */
 export const middleware = app => {
-    app.use(cookieParser());
+    const logger = new Logger();
     app.use(express.json());
 
-    app.use('/', auth, routes);
+    app.use('/', userRoutes);
     app.use(validationError);
-    app.use(logErrors);
+    app.use(logErrors(logger));
     app.use(clientErrorHandler);
     app.use(errorHandler);
 };
