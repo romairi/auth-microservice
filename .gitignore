@@ -4,6 +4,7 @@ node_modules
 build
 docker-compose.yml
 .vscode
-# testing
+
+# Test
 /coverage.data
 /coverage/
