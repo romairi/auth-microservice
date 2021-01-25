@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`middleware should call app.use with the middleware 1`] = `
+Array [
+  Array [
+    "EXPRESS_JSON",
+  ],
+  Array [
+    "/",
+    "USER_ROUTE",
+  ],
+  Array [
+    "VALIDATION_ERROR",
+  ],
+  Array [
+    "LOG_ERRORS",
+  ],
+  Array [
+    "CLIENT_ERROR_HANDLER",
+  ],
+  Array [
+    "ERROR_HANDLER",
+  ],
+]
+`;

@@ -1,16 +1,14 @@
 import express from 'express';
 import userRoutes from './user/routes';
 import {validationError, logErrors, clientErrorHandler, errorHandler} from './services/errorHandling';
-import Logger from "./services/logger";
 
 /**
  * Application-Level Middleware
  * @param app
+ * @param logger
  */
-export const middleware = app => {
-    const logger = new Logger();
+export const middleware = (app, logger) => {
     app.use(express.json());
-
     app.use('/', userRoutes);
     app.use(validationError);
     app.use(logErrors(logger));
