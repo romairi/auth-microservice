@@ -1,6 +1,5 @@
-import {StatusCodes, ReasonPhrases} from 'http-status-codes';
-import {ValidationError} from "express-validation";
-
+import { ValidationError } from "express-validation";
+import { StatusCodes, ReasonPhrases } from "http-status-codes";
 
 /**
  * An object details keyed by parameter, each containing an array of errors in joi format
@@ -11,10 +10,10 @@ import {ValidationError} from "express-validation";
  * @returns by default will return errors in the following format,
  */
 export function validationError(err, req, res, next) {
-    if (err instanceof ValidationError) {
-        return res.status(err.statusCode).json(err);
-    }
-    return next(err);
+  if (err instanceof ValidationError) {
+    return res.status(err.statusCode).json(err);
+  }
+  return next(err);
 }
 
 /**
@@ -22,9 +21,9 @@ export function validationError(err, req, res, next) {
  * @param logger
  * @returns {Function}
  */
-export const logErrors = logger  => (err, req, res, next) => {
-    logger.error(err.stack);
-    next(err);
+export const logErrors = (logger) => (err, req, res, next) => {
+  logger.error(err.stack);
+  next(err);
 };
 
 /**
@@ -35,11 +34,13 @@ export const logErrors = logger  => (err, req, res, next) => {
  * @param next
  */
 export function clientErrorHandler(err, req, res, next) {
-    if (req.xhr) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({error: ReasonPhrases.INTERNAL_SERVER_ERROR});
-    } else {
-        next(err);
-    }
+  if (req.xhr) {
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send({ error: ReasonPhrases.INTERNAL_SERVER_ERROR });
+  } else {
+    next(err);
+  }
 }
 
 /**
@@ -50,6 +51,6 @@ export function clientErrorHandler(err, req, res, next) {
  * @param next
  */
 export function errorHandler(err, req, res, next) {
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR);
-    res.send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+  res.send(ReasonPhrases.INTERNAL_SERVER_ERROR);
 }
