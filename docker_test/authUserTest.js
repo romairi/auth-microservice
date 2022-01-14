@@ -1,11 +1,18 @@
 const axios = require("axios");
 
+/**
+ * integration test for running
+ * node <name file> -registration
+ * node <name file> -login
+ * node <name file> -authentication
+ * @param {*} flag
+ */
 async function main(flag) {
   const username = Math.random()
     .toString(36)
     .replace(/[^a-z]+/g, "")
-    .substr(0, 8);
-    
+    .substring(0, 8);
+
   if (flag == "registration") {
     const response = await axios.post("http://localhost:8080/registration", {
       username,
@@ -19,7 +26,6 @@ async function main(flag) {
     });
 
     console.log(response);
-
   } else if (flag == "login") {
     await axios.post("http://localhost:8080/registration", {
       username,
@@ -38,7 +44,6 @@ async function main(flag) {
     });
 
     console.log(response);
-
   } else if (flag == "authentication") {
     const registrationResponse = await axios.post(
       "http://localhost:8080/registration",
