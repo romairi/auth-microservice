@@ -2,7 +2,7 @@
  * A wrapper logger
  */
 export default class Logger {
-  constructor(_console = global.console) {
+  constructor(_console = globalThis.console) {
     this.console = _console;
   }
 

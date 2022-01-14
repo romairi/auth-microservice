@@ -6,11 +6,9 @@ import { connectDB } from "./services/connectDB";
 import Logger from "./services/logger";
 
 const app = express();
-
 const logger = new Logger();
 
 connectDB();
-
 middleware(app, logger);
 
 app.listen(serverConfig.port, () =>

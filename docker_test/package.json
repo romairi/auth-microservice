@@ -1,0 +1,14 @@
+{
+  "name": "docker_test",
+  "version": "1.0.0",
+  "description": "testing  user auth",
+  "main": "authUserTest.js",
+  "scripts": {
+    "start": "node authUserTest.js -registration"
+  },
+  "author": "roman",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0"
+  }
+}
