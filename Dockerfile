@@ -1,8 +1,5 @@
 # BASE IMAGE
 FROM node:14.15.1-alpine AS base
-#ARG WORKDIR_PATH=/usr/src/app
-#WORKDIR ${WORKDIR_PATH}
-WORKDIR /usr/src/app
 ENV PORT=8080
 ENV USER=node
 
