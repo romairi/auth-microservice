@@ -1,30 +1,32 @@
 import jwt from "jsonwebtoken";
-import {loadUser} from "./controller";
 
-jest.mock('jsonwebtoken', () => ({
-    sign: jest.fn(() => 'TOKEN'),
-}));
-jest.mock('../config/serverConfig', () => ({
-    serverConfig: {jwt: {secret: "SECRET"}},
+import { loadUser } from "./controller";
+
+jest.mock("jsonwebtoken", () => ({
+  sign: jest.fn(() => "TOKEN"),
 }));
 
-describe('controller', () => {
-    describe('loadUser', () => {
-        const userMock = {
-            _id: 1,
-            toObject: () => ({password: 'PASSWORD', userName: 'USER_NAME'})
-        };
+jest.mock("../config/serverConfig", () => ({
+  serverConfig: { jwt: { secret: "SECRET" } },
+}));
 
-        const resMock = {
-            json: jest.fn(),
-        };
+describe("controller", () => {
+  describe("loadUser", () => {
+    const userMock = {
+      _id: 1,
+      toObject: () => ({ password: "PASSWORD", userName: "USER_NAME" }),
+    };
 
-        it('should load the user', () => {
-            const result = loadUser(resMock, userMock);
+    const resMock = {
+      json: jest.fn(),
+    };
 
-            expect(resMock.json.mock.calls.pop()).toMatchSnapshot();
-            expect(jwt.sign.mock.calls.pop()).toMatchSnapshot();
-            expect(result).toBe(resMock);
-        });
+    it("should load the user", () => {
+      const result = loadUser(resMock, userMock);
+
+      expect(resMock.json.mock.calls.pop()).toMatchSnapshot();
+      expect(jwt.sign.mock.calls.pop()).toMatchSnapshot();
+      expect(result).toBe(resMock);
     });
+  });
 });
