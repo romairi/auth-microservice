@@ -7,13 +7,13 @@ RUN chown ${USER}:${USER} -R .
 USER ${USER}
 COPY --chown=${USER} package*.json ./
 
-# BUILD STAGE IMAGE
+# BUILD Stage image
 FROM base AS build-stage
 RUN npm i
 COPY --chown=${USER} . .
 RUN npm run build
 
-# PROD IMAGE
+# PROD image
 FROM base
 
 COPY --chown=${USER} --from=build-stage /usr/src/app/build /usr/src/app/build
