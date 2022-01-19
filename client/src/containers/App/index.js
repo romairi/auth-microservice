@@ -1,12 +1,12 @@
-import Login from "../Login";
-import Registration from "../Registration";
+import { BrowserRouter as Router } from "react-router-dom";
+import routes from "../../routes";
+
 import "./index.scss";
 
 const App = () => {
   return (
     <div className="app-container">
-      {/* <Login/> */}
-      <Registration/>
+      <Router>{routes}</Router>
     </div>
   );
 };
