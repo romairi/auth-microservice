@@ -1,3 +1,5 @@
+import { axios } from "axios";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import _ from "lodash";
 import { useForm } from "react-hook-form";
@@ -16,7 +18,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LOGIN_ROUTE } from "../../routes/constants";
 // import { schemaRegistration } from "./validation";
 // import {
-//   EMAIL_FIELD,
+// import { axios } from 'axios';
+// EMAIL_FIELD,
 //   CONFIRM_PASSWORD_FIELD,
 //   PASSWORD_FIELD,
 //   USER_NAME_FIELD,
@@ -35,9 +38,21 @@ const Registration = () => {
     // resolver: joiResolver(schemaRegistration),
   });
 
+  // const [post, setPost] = useState(null);
+
+  // useEffect(() => {
+  //   axios.post("/registration").then((response) => {
+  //     setPost(response?.data);
+  //   });
+  // }, []);
+
   const onSubmit = (data) => {
     console.log(data);
   };
+
+  // if(!post) {
+  //   return null;
+  // }
 
   return (
     <ThemeProvider theme={theme}>
