@@ -57,7 +57,7 @@ const Registration = () => {
               alignItems: "center",
             }}
           >
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" color="primary">
               {text.registration.SIGN_UP}
             </Typography>
             <Box

@@ -40,7 +40,7 @@ const Login = () => {
               alignItems: "center",
             }}
           >
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" color="primary">
               {text.login.SIGN_IN}
             </Typography>
             <Box
