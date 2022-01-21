@@ -5,10 +5,11 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { text } from "../../text/constants";
 
-export default function ButtonAppBar() {
+const Header = () => {
   return (
-    <Box sx={{ flexGrow: 1, width: "100%"}}>
+    <Box sx={{ flexGrow: 1, width: "100%" }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -21,11 +22,13 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            {text.header.NEWS}
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit"> {text.header.LOGIN}</Button>
         </Toolbar>
       </AppBar>
     </Box>
   );
-}
+};
+
+export default Header;
