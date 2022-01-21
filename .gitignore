@@ -2,7 +2,6 @@ node_modules
 .idea/
 .env
 build
-docker-compose.yml
 .vscode
 
 # Test
