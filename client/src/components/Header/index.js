@@ -2,11 +2,11 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { text } from "../../text/constants";
-
+import { LOGIN_ROUTE } from "../../routes/constants";
+import Link from "@mui/material/Link";
 const Header = () => {
   return (
     <Box sx={{ flexGrow: 1, width: "100%" }}>
@@ -24,7 +24,14 @@ const Header = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {text.header.NEWS}
           </Typography>
-          <Button color="inherit"> {text.header.LOGIN}</Button>
+          <Link
+            href={LOGIN_ROUTE}
+            underline="none"
+            variant="body2"
+            color="inherit"
+          >
+            {text.header.LOGIN}
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
