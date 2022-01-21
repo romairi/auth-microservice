@@ -1,5 +1,32 @@
 @import "../../scss/variables";
 
 .app-container {
-  height: 100%;
+  height: 100vh;
+  display: flex;  
+  flex-flow: row wrap;
+  justify-content: center;
+  background-color: $color-gray;
+
+  .base-form-login {
+    width: fit-content;
+    height: fit-content;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: white;
+
+    @media screen and (max-width: $max-xs) {
+      width: 80%;
+      padding: 20px 10px 20px 10px;
+      margin: 20px 0 20px 0;
+    }
+
+    .server-error {
+      width: 215px;
+      text-align: center;
+      word-wrap: break-word;
+      margin: 0 auto;
+      padding: 2px 0;
+      color: $error_color;
+    }
+  }
 }

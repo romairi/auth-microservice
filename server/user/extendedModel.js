@@ -7,10 +7,6 @@ module.exports = {
     type: String,
     required: true,
   },
-  age: {
-    type: String,
-    required: true,
-  },
   gender: {
     type: String,
     required: false,
@@ -18,7 +14,7 @@ module.exports = {
   },
   phoneNumber: {
     type: Number,
-    required: true,
+    required: false,
   },
   description: {
     type: String,
