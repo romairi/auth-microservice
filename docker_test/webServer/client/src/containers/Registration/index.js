@@ -1,10 +1,5 @@
-import { axios } from "axios";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import _ from "lodash";
 import { useForm } from "react-hook-form";
-import { joiResolver } from "@hookform/resolvers/joi";
-
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -16,13 +11,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LOGIN_ROUTE } from "../../routes/constants";
-// import { schemaRegistration } from "./validation";
-// import {
-// EMAIL_FIELD,
-//   CONFIRM_PASSWORD_FIELD,
-//   PASSWORD_FIELD,
-//   USER_NAME_FIELD,
-// } from "./constants";
 import { text } from "../../text/constants";
 
 import "./index.scss";
@@ -38,7 +26,7 @@ const Registration = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    // resolver: joiResolver(schemaRegistration),
+    // resolver: joiResolver(schemaRegistration), TODO: fix validation
   });
 
   const onSubmit = (data) => {
@@ -111,7 +99,6 @@ const Registration = () => {
                     autoComplete="email-address"
                     {...register("email")}
                   />
-                  {/* <p>{errors.email?.message}</p> */}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
