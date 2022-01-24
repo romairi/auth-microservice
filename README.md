@@ -20,7 +20,13 @@ install dependency: npm i<br/>
 You can now view client in the browser. <br/>
 Local: http://localhost:3000 <br/>
 
-## Test
+# Start App using docker:
+build images: docker build -t auth_microservice . <br/>
+view images: docker images <br/>
+### run docker image
+docker run <name image>: docker run auth_microservice <br/>
+
+## Test user registration/login locally
 cd docker_test <br/>
 install dependency: npm i <br/>
 #### run test integration: npm start
@@ -29,12 +35,12 @@ install dependency: npm i <br/>
 run all tests: npm test <br/>
 
 # Technologies  Included
-Node using express
-MongoDB using mongoose
-Docker
+Node using express library <br/>
+MongoDB using mongoose library <br/>
+Docker <br/>
 React <br/>
 JSX ES6 <br/>
-MUI
+MUI <br/>
 SCSS <br/>
 Jest <br/>
 
