@@ -1,6 +1,6 @@
 node_modules
 .idea/
-.env
+# .env TODO: ignore this file after github presentation
 build
 .vscode
 
