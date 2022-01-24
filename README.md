@@ -44,8 +44,10 @@ MUI <br/>
 SCSS <br/>
 Jest <br/>
 
-# UML 
-## Login
+# Sequence diagram
+ If you want to see the sequence diagram use the next source:<br/>
+ ### https://sequencediagram.org/
+# Login diagram
 title Login flow
 
 actor Client
@@ -64,27 +66,30 @@ Web_Server->Auth_microservice: Login
 Auth_microservice->Auth_microservice: Validate login fields
 
 Auth_microservice->Database: Find user by email
-Database-#redxAuth_microservice: if user does not exist in DB return message error
+Database--#redxAuth_microservice: if user doesn't exist in DB return message error
 
-Auth_microservice-#redxWeb_Server: return error
-
-Web_Server-#redxClient: something wrong
-
-Database-#redxAuth_microservice: If password doesn't match return message error
+Auth_microservice--#redxWeb_Server: Message error
+Web_Server--#redxClient: Email or password wrong
+Database-->Auth_microservice:Return the User
 
 
-Auth_microservice-#redxWeb_Server: message error
-
-Web_Server-#redxClient: something wrong
-
-Database-->Auth_microservice: If user exists compare that passwords matched - return success
+note over Auth_microservice:Compare between db password\n and user's password
 
 
-Auth_microservice->Web_Server: Login with jwt token by user id and expires time for 24 hours and sign in to the system with all users data without password
+Database--#redxAuth_microservice: If password doesn't match return message error
+Auth_microservice--#redxWeb_Server: message error
+Web_Server--#redxClient: Email or password wrong
 
-Web_Server->Client: Login success with id and jwt token with expires for 24 hour
 
-## Registration
+Auth_microservice->Web_Server: Set user_id and JWT token in the response.
+
+Web_Server->Client:Return the User object (without password) and jwt token that valid for 24h on the cookie
+## image of login sequence diagram
+<img src="sequenceDiagrams/login.png" width="600" height="400">
+
+
+# Registration diagram
+
 title Registration flow
 
 actor Client
@@ -115,3 +120,6 @@ Auth_microservice->Database: Save a new user in DB
 Auth_microservice->Web_Server: Set the user(without password) and JWT token
 
 Web_Server->Client: Set a cookie with JWT token for 24h and return the User
+
+## image of login sequence diagram
+<img src="sequenceDiagrams/registration.png" width="600" height="400">
