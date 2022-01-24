@@ -1,0 +1,36 @@
+title Login flow
+
+actor Client
+entity Web_Server
+
+entity Auth_microservice
+database Database
+
+
+Client->Client: Click on the login button
+Client->Client: Show login form
+Client->Client: Validate the form
+Client->Web_Server: Login
+
+Web_Server->Auth_microservice: Login
+Auth_microservice->Auth_microservice: Validate login fields
+
+Auth_microservice->Database: Find user by email
+Database--#redxAuth_microservice: if user doesn't exist in DB return message error
+
+Auth_microservice--#redxWeb_Server: Message error
+Web_Server--#redxClient: Email or password wrong
+Database-->Auth_microservice:Return the User
+
+
+note over Auth_microservice:Compare between db password\n and user's password
+
+
+Database--#redxAuth_microservice: If password doesn't match return message error
+Auth_microservice--#redxWeb_Server: message error
+Web_Server--#redxClient: Email or password wrong
+
+
+Auth_microservice->Web_Server: Set user_id and JWT token in the response.
+
+Web_Server->Client:Return the User object (without password) and jwt token that valid for 24h on the cookie
