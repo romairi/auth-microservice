@@ -53,7 +53,7 @@ This service handles REST API of external server <br/> and provides auth of the 
 7. To install the latest version, use the nvm command with the specific Node.js version: <br/>
 ```nvm install [version.number]```
 # Getting Started
-Clone the repository: git clone <name> 
+Clone the repository: git clone ```<name>```
 
 ## Prerequisites
 ### Microservice
@@ -164,9 +164,7 @@ Auth_microservice->Web_Server: Set user_id and JWT token in the response.
 Web_Server->Client:Return the User object (without password) and jwt token that valid for 24h on the cookie
 ```
 ## Login Scheme
-<img src="sequenceDiagrams/login.png"width="600">
 ![](sequenceDiagrams/login.png)
-
 ## Code Diagram Of Registration
 
 ```title Registration flow
@@ -201,7 +199,6 @@ Auth_microservice->Web_Server: Set the user(without password) and JWT token
 Web_Server->Client: Set a cookie with JWT token for 24h and return the User
 ```
 ## Registration Scheme
-<img src="sequenceDiagrams/registration.png"width="600">
 ![](sequenceDiagrams/registration.png)
 
 <!-- RESOURCES -->
