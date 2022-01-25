@@ -78,8 +78,17 @@ Clone the repository: git clone ```<name>```
 <!-- START APP VIA DOCKER -->
  # Start App via Docker:
 ## Linux
-1. build images: ```docker build -t <name> .``` 
-2. run image: ```docker run <name>```
+### Install Docker Engine:
+1. ```sudo apt-get update```
+2. ```sudo apt-get install docker-ce docker-ce-cli containerd.io```
+3. build images: ```docker build -t <name> .``` 
+4. run image:  ```docker run <name>```
+
+### Uninstall Docker Engine:
+1. ```sudo apt-get purge docker-ce docker-ce-cli containerd.io```
+2. Images, containers, volumes, or customized configuration files on your host<br/>  are not automatically removed. To delete all images, containers, and volumes:
+* ```sudo rm -rf /var/lib/docker```
+* ```sudo rm -rf /var/lib/containerd```
 ## Windows 
 - Installation
 1. Download Docker:<br/> 
