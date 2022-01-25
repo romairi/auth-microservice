@@ -22,7 +22,6 @@ async function main(flag) {
       lastName: "queen",
       age: "25",
       phoneNumber: "0547897894",
-      age: "25",
     });
 
     console.log(response);
@@ -35,7 +34,6 @@ async function main(flag) {
       lastName: "queen",
       age: "25",
       phoneNumber: "0547897894",
-      age: "25",
     });
 
     const response = await axios.post("http://localhost:8080/login", {
@@ -55,7 +53,6 @@ async function main(flag) {
         lastName: "queen",
         age: "25",
         phoneNumber: "0547897894",
-        age: "25",
       }
     );
 
