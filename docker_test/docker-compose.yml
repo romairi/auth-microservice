@@ -1,38 +1,48 @@
-version: '3.5'
+version: "3.5"
 services:
-  # server:
-  #   build:
-  #     context: ./webServer
-  #     dockerfile: ./Dockerfile
-  #   ports:
-  #     - "${EXTERNAL_PORT}:${PORT}"
-  #   environment:
-  #     - NODE_ENV=dev
-  #     - PORT=${PORT}
-  #     - MICROSERVICE_LOGIN_HOST=microservice_login
-  #   volumes:
-  #     - ./webServer:/usr/src/app
-  #   restart: always
-  #   depends_on:
-  #     - mongo
-  microservice_login:
+# WEB-SERVER
+  web_server:
+    build:
+      context: ./webServer
+      dockerfile: ./Dockerfile
+      target: build-stage
+    ports:
+      - "${WEBSERVER_PORT}:${PORT}"
+      - "${WEBSERVER_DEBUG_PORT}:${WEBSERVER_DEBUG_PORT}" # debug port node for inspect-brk
+    command: run npm debug
+    environment:
+      - NODE_ENV=dev
+      - PORT=${PORT}
+      - MICROSERVICE_AUTH_HOST=microservice_auth:${PORT}
+      - DEBUG_PORT=${WEBSERVER_DEBUG_PORT}
+    volumes:
+      - ./webServer:/usr/src/app
+    restart: always
+
+# MICROSERVICE-AUTH
+  microservice_auth:
     build:
       context: ../
       dockerfile: ./Dockerfile
+      target: build-stage
     environment:
       - NODE_ENV=dev
       - PORT=${PORT}
       - MONGO_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
       - MONGO_HOST=mongo
+      - DEBUG_PORT=${WEBSERVER_DEBUG_PORT}
+    command: npm run debug
     ports:
-      - "${EXTERNAL_PORT}:${PORT}"
+      - "${MICROSERVICE_AUTH_PORT}:${PORT}"
+      - "${MICROSERVICE_AUTH_DEBUG_PORT}:${MICROSERVICE_AUTH_DEBUG_PORT}" # debug port node for inspect-brk
     volumes:
       - ../:/usr/src/app
     restart: always
     depends_on:
       - mongo
-  
+
+# MONGO
   mongo:
     image: mongo:latest
     restart: always
@@ -42,16 +52,17 @@ services:
     volumes:
       - mongodbdata:/data/db
 
-  admin-mongo:
-    # mongodb://ROMAN:12345@mongo
-    image: adicom/admin-mongo
-    ports:
-      - "${ADMIN_MONGO_PORT}:${ADMIN_MONGO_PORT}"
-    environment:
-      - PORT=${ADMIN_MONGO_PORT}
-      - HOST=mongo
-    depends_on:
-      - mongo
+# ADMIN-MONGO
+  # admin-mongo:
+  #   # mongodb://ROMAN:12345@mongo
+  #   image: adicom/admin-mongo
+  #   ports:
+  #     - "${ADMIN_MONGO_PORT}:${ADMIN_MONGO_PORT}"
+  #   environment:
+  #     - PORT=${ADMIN_MONGO_PORT}
+  #     - HOST=mongo
+  #   depends_on:
+  #     - mongo
 
 volumes:
   mongodbdata:
