@@ -5,6 +5,7 @@
   "main": "server",
   "scripts": {
     "start": "nodemon --exec babel-node -r dotenv/config server",
+    "debug": "nodemon --exec babel-node -r dotenv/config server --inspect=0.0.0.0:9222 --watch server",
     "build": "webpack",
     "test": "jest",
     "test:update": "jest -u",
