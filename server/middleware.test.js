@@ -4,8 +4,8 @@ import { middleware } from "./middleware";
 jest.mock("express", () => ({ json: () => "EXPRESS_JSON" }));
 jest.mock("./user/routes", () => "USER_ROUTE");
 jest.mock("./services/errorHandling", () => ({
-  validationError: "VALIDATION_ERROR",
   logErrors: jest.fn(() => "LOG_ERRORS"),
+  validationError: "VALIDATION_ERROR",
   clientErrorHandler: "CLIENT_ERROR_HANDLER",
   errorHandler: "ERROR_HANDLER",
 }));

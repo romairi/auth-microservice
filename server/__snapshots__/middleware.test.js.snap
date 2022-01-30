@@ -10,10 +10,10 @@ Array [
     "USER_ROUTE",
   ],
   Array [
-    "VALIDATION_ERROR",
+    "LOG_ERRORS",
   ],
   Array [
-    "LOG_ERRORS",
+    "VALIDATION_ERROR",
   ],
   Array [
     "CLIENT_ERROR_HANDLER",

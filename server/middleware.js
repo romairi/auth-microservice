@@ -16,8 +16,8 @@ import {
 export const middleware = (app, logger) => {
   app.use(express.json());
   app.use("/", userRoutes);
-  app.use(validationError);
   app.use(logErrors(logger));
+  app.use(validationError);
   app.use(clientErrorHandler);
   app.use(errorHandler);
 };

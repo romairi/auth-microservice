@@ -14,29 +14,27 @@ async function main(flag) {
     .substring(0, 8);
 
   if (flag == "registration") {
-    const response = await axios.post("http://localhost:8080/registration", {
+    const response = await axios.post("http://localhost:8000/registration", {
       username,
       email: `${username}@gmail.com`,
       password: "test12345",
       firstName: username,
       lastName: "queen",
-      age: "25",
       phoneNumber: "0547897894",
     });
 
     console.log(response);
   } else if (flag == "login") {
-    await axios.post("http://localhost:8080/registration", {
+    await axios.post("http://localhost:8000/registration", {
       username,
       email: `${username}@gmail.com`,
       password: "test12345",
       firstName: username,
       lastName: "queen",
-      age: "25",
       phoneNumber: "0547897894",
     });
 
-    const response = await axios.post("http://localhost:8080/login", {
+    const response = await axios.post("http://localhost:8000/login", {
       email: `${username}@gmail.com`,
       password: "test12345",
     });
@@ -44,20 +42,19 @@ async function main(flag) {
     console.log(response);
   } else if (flag == "authentication") {
     const registrationResponse = await axios.post(
-      "http://localhost:8080/registration",
+      "http://localhost:8000/registration",
       {
         username,
         email: `${username}@gmail.com`,
         password: "test12345",
         firstName: username,
         lastName: "queen",
-        age: "25",
         phoneNumber: "0547897894",
       }
     );
 
     const token = registrationResponse?.data?.token;
-    const response = await axios.get("http://localhost:8080/authentication", {
+    const response = await axios.get("http://localhost:8000/authentication", {
       headers: {
         authorization: `Bearer ${token}`,
       },
