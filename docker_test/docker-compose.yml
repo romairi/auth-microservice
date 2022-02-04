@@ -9,7 +9,7 @@ services:
     ports:
       - "${WEBSERVER_PORT}:${PORT}"
       - "${WEBSERVER_DEBUG_PORT}:${WEBSERVER_DEBUG_PORT}" # debug port node for inspect-brk
-    command: run npm debug
+    command: npm run debug
     environment:
       - NODE_ENV=dev
       - PORT=${PORT}
