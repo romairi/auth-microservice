@@ -53,16 +53,15 @@ services:
       - mongodbdata:/data/db
 
 # ADMIN-MONGO
-  # admin-mongo:
-  #   # mongodb://ROMAN:12345@mongo
-  #   image: adicom/admin-mongo
-  #   ports:
-  #     - "${ADMIN_MONGO_PORT}:${ADMIN_MONGO_PORT}"
-  #   environment:
-  #     - PORT=${ADMIN_MONGO_PORT}
-  #     - HOST=mongo
-  #   depends_on:
-  #     - mongo
+  admin-mongo:
+    image: adicom/admin-mongo
+    ports:
+      - "${ADMIN_MONGO_PORT}:${ADMIN_MONGO_PORT}"
+    environment:
+      - PORT=${ADMIN_MONGO_PORT}
+      - HOST=mongo
+    depends_on:
+      - mongo
 
 volumes:
   mongodbdata:
