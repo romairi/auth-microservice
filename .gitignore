@@ -1,6 +1,6 @@
 node_modules
 .idea/
-# .env TODO: ignore this file after github presentation
+.env
 build
 
 # Test
