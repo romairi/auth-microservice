@@ -16,7 +16,8 @@
 * [Start App via Docker](#start-app-via-docker)
   * [Linux](#linux)    
   * [Windows](#windows)    
-  * [Mac](#mac)    
+  * [Mac](#mac)  
+* [Mongo Admin](#mongo-admin)  
 * [Built With Technologies](#built-with-technologies)
 * [Testing](#testing)
 * [Sequence Diagrams](#sequence-diagrams)
@@ -110,6 +111,13 @@ Clone the repository: git clone ```<name>```
 - Start Docker
 1. build images: ```docker build -t <name> .``` 
 2. run image: ```docker run <name>```
+
+<!-- MONGO ADMIN -->
+# Mongo Admin
+- Connection to mongodb as admin 
+  1. adminMongo listening on host: http://0.0.0.0:```<ADMIN_MONGO_PORT>```
+  2. Connection name: ```<name>```
+  3. Connection string: ```mongodb://<MONGO_INITDB_ROOT_USERNAME>:<MONGO_INITDB_ROOT_PASSWORD>@mongo```	
 
 # Built With Technologies
 1. Node 16 
