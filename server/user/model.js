@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-import extendedModel from "./extendedModel";
-
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -22,7 +20,6 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  ...extendedModel,
 });
 
 export default mongoose.model("User", UserSchema);

@@ -55,29 +55,6 @@ const Registration = () => {
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    name="firstName"
-                    required
-                    fullWidth
-                    id="firstName"
-                    label="First Name"
-                    autoFocus
-                    autoComplete="given-name"
-                    {...register("firstName")}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="lastName"
-                    label="Last Name"
-                    name="lastName"
-                    autoComplete="family-name"
-                    {...register("lastName")}
-                  />
-                </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -98,17 +75,6 @@ const Registration = () => {
                     name="email"
                     autoComplete="email-address"
                     {...register("email")}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="phoneNumber"
-                    label="phone number"
-                    name="phoneNumber"
-                    autoComplete="phone-number"
-                    {...register("phoneNumber")}
                   />
                 </Grid>
                 <Grid item xs={12}>
