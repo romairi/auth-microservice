@@ -11,6 +11,6 @@ export const login = async (email, password) => {
             'Content-Type': 'application/json',
         }
     })
-    console.log(response);
+    
     return response;
 }

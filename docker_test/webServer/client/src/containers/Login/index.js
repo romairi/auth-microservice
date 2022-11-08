@@ -24,9 +24,7 @@ const Login = () => {
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
     const password = data.get("password");
-  
-    // eslint-disable-next-line no-console
-    console.log(email, password);
+    
     login(email, password);
   };
 
